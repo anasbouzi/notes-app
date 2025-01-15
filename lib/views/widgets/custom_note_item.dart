@@ -29,7 +29,7 @@ class NoteItem extends StatelessWidget {
                 "I am anas bouzi flutter mobile app developer",
                 style: TextStyle(
                   color: Colors.black.withOpacity(.5),
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
             ),
