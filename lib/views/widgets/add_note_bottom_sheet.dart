@@ -3,7 +3,6 @@ import 'package:notes/views/widgets/custom_text_field.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
   const AddNoteBottomSheet({super.key});
-
   @override
   Widget build(BuildContext context) {
     return const Padding(
@@ -13,7 +12,15 @@ class AddNoteBottomSheet extends StatelessWidget {
           SizedBox(
             height: 32,
           ),
-          CustomTextField(),
+          CustomTextField(
+            hintText: 'Title',
+            textInputAction: TextInputAction.next,
+          ),
+          SizedBox(height: 16,),
+          CustomTextField(
+            hintText: 'Content',
+            maxLines: 5,
+          ),
         ],
       ),
     );
