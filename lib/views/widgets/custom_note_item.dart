@@ -14,8 +14,8 @@ class NoteItem extends StatelessWidget {
           context: context,
           dialogType: DialogType.info,
           animType: AnimType.bottomSlide,
-          title: 'Edit Note',
-          desc: 'Are you sure you want to',
+          title: 'تعديل الملاحظة',
+          desc: 'هل أنت متأكد ؟',
           btnCancelOnPress: () {},
           btnOkOnPress: () {
             Navigator.push(
