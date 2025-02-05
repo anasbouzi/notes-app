@@ -51,7 +51,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
           CustomButton(
             onTap: () {
-              print("---------------ANAS-----------------");
               if (formKey.currentState != null &&
                   formKey.currentState!.validate()) {
                 formKey.currentState!.save();
