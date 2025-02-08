@@ -1,11 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes/models/note_model.dart';
 import 'package:notes/views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
-
+  const NoteItem({super.key, required this.note});
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -14,9 +15,13 @@ class NoteItem extends StatelessWidget {
           context: context,
           dialogType: DialogType.info,
           animType: AnimType.bottomSlide,
-          title: 'تعديل الملاحظة',
+          btnCancelText: "حذف",
+          btnOkText: "تعديل",
+          title: 'تعديل الملاحظة او حذفها',
           desc: 'هل أنت متأكد ؟',
-          btnCancelOnPress: () {},
+          btnCancelOnPress: () {
+            note.delete();
+          },
           btnOkOnPress: () {
             Navigator.push(
               context,
@@ -32,16 +37,16 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(bottom: 20, top: 20, left: 16),
         decoration: BoxDecoration(
-          color: const Color(0xffFFCC80),
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                "Notes App",
-                style: TextStyle(
+              title: Text(
+                note.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
@@ -50,7 +55,7 @@ class NoteItem extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                 child: Text(
-                  "I am anas bouzi flutter mobile app developer",
+                  note.subtitle,
                   style: TextStyle(
                     color: Colors.black.withOpacity(.5),
                     fontSize: 16,
@@ -58,7 +63,9 @@ class NoteItem extends StatelessWidget {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                },
                 icon: Icon(
                   FontAwesomeIcons.trash,
                   size: 24,
@@ -69,7 +76,7 @@ class NoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Text(
-                "9 January 2025",
+                note.date,
                 style: TextStyle(
                     color: Colors.black.withOpacity(.4), fontSize: 16),
               ),
