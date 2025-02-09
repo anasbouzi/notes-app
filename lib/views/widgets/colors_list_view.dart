@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/cubits/add_note_cubit/add_note_cubit.dart';
+
+import '../../constant.dart';
 
 class ColorItem extends StatelessWidget {
   const ColorItem({super.key, required this.isActive, required this.color});
@@ -7,7 +11,7 @@ class ColorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isActive
-        ?  CircleAvatar(
+        ? CircleAvatar(
             radius: 35,
             backgroundColor: Colors.white,
             child: CircleAvatar(
@@ -15,9 +19,9 @@ class ColorItem extends StatelessWidget {
               backgroundColor: color,
             ),
           )
-        :  CircleAvatar(
+        : CircleAvatar(
             radius: 28,
-            backgroundColor:color,
+            backgroundColor: color,
           );
   }
 }
@@ -31,23 +35,13 @@ class ItemColorList extends StatefulWidget {
 
 class _ItemColorListState extends State<ItemColorList> {
   int currentIndex = 0;
-  List<Color> color = const [
-    Color(0xff734B5E),
-    Color(0xffBCBDC0),
-    Color(0xff565857),
-    Color(0xff8A8D91),
-    Color(0xffACFCD9),
-    Color(0xff5DD9C1),
-    Color(0xffBF98A0),
-    Color(0xffAA8F66),
-    Color(0xffBA3B46),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 30 * 2,
       child: ListView.builder(
-        itemCount: color.length,
+        itemCount: kColors.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return Padding(
@@ -55,11 +49,12 @@ class _ItemColorListState extends State<ItemColorList> {
             child: GestureDetector(
               onTap: () {
                 currentIndex = index;
+                BlocProvider.of<AddNoteCubit>(context).color = kColors[index];
                 setState(() {});
               },
               child: ColorItem(
                 isActive: currentIndex == index,
-                color: color[index],
+                color: kColors[index],
               ),
             ),
           );
