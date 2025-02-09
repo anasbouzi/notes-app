@@ -63,7 +63,7 @@ class NoteItem extends StatelessWidget {
                   note.subtitle,
                   style: TextStyle(
                     color: Colors.black.withOpacity(.5),
-                    fontSize: 16,
+                    fontSize: 20,
                   ),
                 ),
               ),
